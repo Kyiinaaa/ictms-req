@@ -5,8 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NVehicleController;
 use App\Http\Controllers\NDriverController;
-use App\Http\Controllers\NConferenceRController;
-use App\Http\Controllers\EmployeeController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,10 +25,13 @@ Route::middleware([
         return view('Logs');
     })->name('Logs');
 
-    Route::get('/Statistics', function () {
-        return view('Statistics');
-    })->name('Statistics');
+    Route::get('/ConferenceStatistics', function () {
+        return view('ConferenceStatistics');
+    })->name('ConferenceStatistics');
 
+    Route::get('/VehicleStatistics', function () {
+        return view('VehicleStatistics');
+    })->name('VehicleStatistics');
     Route::get('/VehicleTabular', function () {
         return view('VehicleTabular');
     })->name('VehicleTabular');
@@ -105,6 +106,3 @@ Route::post('/conference-room/update',
 // adding new driver, vehicle, conference, and employee.
 Route::post('/add-driver', [NDriverController::class, 'store'])->name('driver.store');
 Route::post('/add-vehicle', [NVehicleController::class, 'store'])->name('vehicle.store');
-Route::post('/conferences', [NConferenceRController::class, 'store'])->name('conferences.store');
-Route::post('/employee', [EmployeeController::class, 'store'])->name('employee.store');
-
